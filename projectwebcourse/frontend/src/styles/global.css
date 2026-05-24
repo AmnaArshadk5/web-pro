@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+@config "../../tailwind.config.js";
+
+:root {
+  --forest-gradient: linear-gradient(135deg, #132A13 0%, #1B4332 100%);
+  --peach-gradient: linear-gradient(135deg, #BC6C25 0%, #DDA15E 100%);
+  --wheat-dark: #D4A373;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --premium-shadow: 0 10px 40px -10px rgba(19, 42, 19, 0.25);
+  --text-stroke: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+body {
+  @apply bg-cream text-forest-dark antialiased overflow-x-hidden;
+  font-family: 'Outfit', sans-serif;
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(152, 53%, 80%, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(38, 70%, 90%, 0.15) 0px, transparent 50%);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold tracking-tighter;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.glass-panel {
+  @apply backdrop-blur-3xl border border-white/60 rounded-[40px] relative overflow-hidden;
+  background: var(--glass-bg);
+  box-shadow: var(--premium-shadow);
+}
+
+.glass-card {
+  @apply backdrop-blur-2xl border border-white/60 rounded-[32px] p-8 transition-all duration-700 relative overflow-hidden bg-white/50;
+  box-shadow: var(--premium-shadow);
+}
+
+.glass-card:hover {
+  @apply -translate-y-2 border-forest/10;
+  box-shadow: 0 30px 60px -20px rgba(27, 67, 50, 0.2), 0 15px 30px -10px rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary {
+  @apply relative px-8 py-4 rounded-[20px] text-wheat font-black text-xs uppercase tracking-[0.25em] transition-all duration-500 overflow-hidden shadow-2xl active:scale-95 flex items-center justify-center gap-3;
+  background: var(--forest-gradient);
+}
+
+.btn-primary:hover {
+  @apply -translate-y-1 brightness-110;
+  box-shadow: 0 20px 40px -10px rgba(27, 67, 50, 0.4);
+}
+
+.btn-secondary {
+  @apply relative px-8 py-4 rounded-[20px] font-black text-xs uppercase tracking-[0.25em] transition-all duration-500 overflow-hidden shadow-xl active:scale-95 flex items-center justify-center gap-3;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #1B4332;
+}
+
+.btn-secondary:hover {
+  @apply -translate-y-1 bg-white;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+}
+
+.form-input {
+  @apply w-full px-6 py-4 rounded-2xl bg-white/60 backdrop-blur-xl border-2 border-transparent focus:border-forest/20 focus:bg-white/95 focus:outline-none transition-all duration-500 text-forest-dark font-medium;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.form-label {
+  @apply block text-[10px] font-black text-forest-dark mb-2 tracking-[0.2em] uppercase opacity-60;
+}
+
+.bg-mesh {
+  background: 
+    radial-gradient(at 100% 0%, hsla(152, 53%, 85%, 0.4) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(38, 70%, 95%, 0.4) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, hsla(280, 50%, 98%, 0.2) 0px, transparent 50%),
+    #FFFDF5;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(27, 67, 50, 0.1);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(27, 67, 50, 0.2);
+  background-clip: content-box;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+
