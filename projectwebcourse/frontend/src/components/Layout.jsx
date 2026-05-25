@@ -207,60 +207,68 @@ const Layout = ({ children }) => {
       </motion.aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 h-screen overflow-y-auto pb-12 px-4 lg:pr-4 lg:pl-0 pt-10 relative w-full max-w-[100vw]">
-        
-        {/* Mobile Header Toggle */}
-        {isMobile && !isSidebarOpen && (
-          <button
-            onClick={() => setIsSidebarOpen(true)}
-            className="absolute top-6 left-4 z-30 p-3 rounded-2xl bg-white/80 border border-white shadow-lg text-forest hover:bg-white transition-all backdrop-blur-md"
-          >
-            <Menu size={24} />
-          </button>
+      <main className="flex-1 h-screen overflow-y-auto pb-24 lg:pb-12 px-3 sm:px-4 lg:pr-4 lg:pl-0 pt-4 lg:pt-10 relative w-full max-w-[100vw]">
+
+        {/* Mobile Top Bar */}
+        {isMobile && (
+          <div className="flex items-center justify-between mb-6 px-1">
+            <button
+              onClick={() => setIsSidebarOpen(true)}
+              className="p-3 rounded-2xl bg-white/80 border border-white shadow-lg text-forest hover:bg-white transition-all backdrop-blur-md"
+            >
+              <Menu size={22} />
+            </button>
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-forest to-forest-light flex items-center justify-center shadow-lg p-1.5 overflow-hidden">
+                <img src="/wheat_logo.png" alt="RuralPay" className="w-full h-full object-contain brightness-110" />
+              </div>
+              <span className="text-lg font-black text-forest-dark tracking-tighter">RuralPay</span>
+            </div>
+            <div className="flex gap-2">
+              <Link to="/notifications" className="w-10 h-10 rounded-xl bg-white/60 border border-white/80 flex items-center justify-center text-forest shadow-sm hover:bg-white transition-all">
+                <Bell size={18} />
+              </Link>
+              <Link to="/profile" className="w-10 h-10 rounded-xl overflow-hidden bg-white/60 border border-white/80 flex items-center justify-center text-forest shadow-sm hover:bg-white transition-all">
+                {user?.profileImage ? (
+                  <img src={user.profileImage} className="w-full h-full object-cover" alt={user.name} />
+                ) : (
+                  <User size={18} />
+                )}
+              </Link>
+            </div>
+          </div>
         )}
 
-        <header className={`flex flex-col md:flex-row md:justify-between items-start md:items-end gap-6 mb-12 ${isMobile ? 'ml-16 mt-2' : 'ml-6'}`}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="greeting"
-          >
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-forest/40 mb-3 block">Rural Banking Reimagined</span>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-forest-dark tracking-tighter">
-              Welcome, <span className="text-terracotta italic">{user?.name?.split(' ')[0] || 'Partner'}</span>
-            </h1>
-            <p className="text-forest/60 mt-2 font-medium text-sm md:text-base">Cultivating your financial future, today.</p>
-          </motion.div>
+        {/* Desktop Header */}
+        {!isMobile && (
+          <header className="flex flex-col md:flex-row md:justify-between items-start md:items-end gap-6 mb-12 ml-6">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="greeting">
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-forest/40 mb-3 block">Rural Banking Reimagined</span>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-forest-dark tracking-tighter">
+                Welcome, <span className="text-terracotta italic">{user?.name?.split(' ')[0] || 'Partner'}</span>
+              </h1>
+              <p className="text-forest/60 mt-2 font-medium text-sm md:text-base">Cultivating your financial future, today.</p>
+            </motion.div>
+            <div className="flex gap-4 self-end md:self-auto mr-6">
+              <Link to="/notifications" className="w-12 h-12 rounded-2xl bg-white/60 border border-white/80 flex items-center justify-center text-forest shadow-sm cursor-pointer hover:bg-white transition-all">
+                <Bell size={20} />
+              </Link>
+              <Link to="/profile" className="w-12 h-12 rounded-2xl overflow-hidden bg-white/60 border border-white/80 flex items-center justify-center text-forest shadow-sm cursor-pointer hover:bg-white transition-all">
+                {user?.profileImage ? (
+                  <>
+                    <img src={user.profileImage} className="w-full h-full object-cover" alt={user.name}
+                      onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
+                    <div className="w-full h-full items-center justify-center hidden"><User size={20} /></div>
+                  </>
+                ) : (
+                  <User size={20} />
+                )}
+              </Link>
+            </div>
+          </header>
+        )}
 
-          <div className="flex gap-4 self-end md:self-auto mr-6">
-            <Link to="/notifications" className="w-12 h-12 rounded-2xl bg-white/60 border border-white/80 flex items-center justify-center text-forest shadow-sm cursor-pointer hover:bg-white transition-all">
-              <Bell size={20} />
-            </Link>
-            <Link to="/profile" className="w-12 h-12 rounded-2xl overflow-hidden bg-white/60 border border-white/80 flex items-center justify-center text-forest shadow-sm cursor-pointer hover:bg-white transition-all">
-              {user?.profileImage ? (
-                <>
-                  <img 
-                    src={user.profileImage} 
-                    className="w-full h-full object-cover" 
-                    alt={user.name}
-                    onError={(e) => {
-                      e.target.onerror = null; 
-                      e.target.style.display = 'none';
-                      e.target.nextSibling.style.display = 'flex';
-                    }} 
-                  />
-                  <div className="w-full h-full items-center justify-center hidden">
-                    <User size={20} />
-                  </div>
-                </>
-              ) : (
-                <User size={20} />
-              )}
-            </Link>
-          </div>
-        </header>
-
-        <div className="w-full h-full max-w-[1400px] mx-auto px-4 md:px-6">
+        <div className="w-full h-full max-w-[1400px] mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
               key={location.pathname}
@@ -273,6 +281,37 @@ const Layout = ({ children }) => {
             </motion.div>
           </AnimatePresence>
         </div>
+
+        {/* Mobile Bottom Navigation */}
+        {isMobile && (
+          <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl border-t border-forest/10 shadow-[0_-10px_40px_rgba(0,0,0,0.08)] px-2 py-2">
+            <div className="flex items-center justify-around">
+              {navLinks.slice(0, 5).map((link) => {
+                const isActive = location.pathname.startsWith(link.path);
+                return (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    onClick={handleLinkClick}
+                    className={`flex flex-col items-center gap-1 px-3 py-2 rounded-2xl transition-all duration-300 min-w-[52px] ${
+                      isActive ? 'bg-forest text-wheat' : 'text-forest/50 hover:text-forest'
+                    }`}
+                  >
+                    <span className={isActive ? 'text-mint' : ''}>{link.icon}</span>
+                    <span className="text-[9px] font-black uppercase tracking-wide leading-none">{link.label.split(' ')[0]}</span>
+                  </Link>
+                );
+              })}
+              <button
+                onClick={() => setIsSidebarOpen(true)}
+                className="flex flex-col items-center gap-1 px-3 py-2 rounded-2xl text-forest/50 hover:text-forest transition-all min-w-[52px]"
+              >
+                <Menu size={20} />
+                <span className="text-[9px] font-black uppercase tracking-wide leading-none">More</span>
+              </button>
+            </div>
+          </nav>
+        )}
       </main>
     </div>
   );

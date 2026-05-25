@@ -87,16 +87,16 @@ const Dashboard = () => {
   );
 
   return (
-    <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="space-y-8 pb-20">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <motion.div variants={fadeUp} className="lg:col-span-2 relative overflow-hidden rounded-[40px] p-10 text-wheat shadow-2xl bg-gradient-to-br from-forest via-forest-light to-forest-dark border border-white/10">
+    <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="space-y-5 sm:space-y-8 pb-20">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-8">
+        <motion.div variants={fadeUp} className="lg:col-span-2 relative overflow-hidden rounded-[28px] sm:rounded-[40px] p-6 sm:p-10 text-wheat shadow-2xl bg-gradient-to-br from-forest via-forest-light to-forest-dark border border-white/10">
           <div className="absolute -top-24 -right-24 w-96 h-96 bg-mint/10 rounded-full blur-[100px] animate-blob"></div>
           <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-peach/10 rounded-full blur-[80px] animate-blob delay-2000"></div>
-          <div className="relative z-10 flex flex-col h-full justify-between min-h-[280px]">
+          <div className="relative z-10 flex flex-col h-full justify-between min-h-[220px] sm:min-h-[280px]">
             <div className="flex justify-between items-start">
               <div>
                 <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-[10px] font-black uppercase tracking-widest border border-white/20 mb-4 inline-block">Primary Vault</span>
-                <h2 className="text-5xl lg:text-7xl font-black tracking-tighter">
+                <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tighter">
                   <span className="text-3xl mr-2 text-mint/60">Rs.</span>
                   {wallet?.balance?.toLocaleString() || '0'}
                 </h2>
@@ -108,14 +108,14 @@ const Dashboard = () => {
                 <CreditCard size={32} className="text-mint" />
               </div>
             </div>
-            <div className="mt-12 flex flex-wrap gap-4">
-              <Link to="/wallet" className="px-8 py-4 rounded-2xl bg-wheat text-forest font-black shadow-xl hover:bg-white transition-all active:scale-95 flex items-center gap-2">
+            <div className="mt-6 sm:mt-12 flex flex-wrap gap-3">
+              <Link to="/wallet" className="px-5 sm:px-8 py-3 sm:py-4 rounded-2xl bg-wheat text-forest font-black shadow-xl hover:bg-white transition-all active:scale-95 flex items-center gap-2 text-sm">
                 <ArrowUpRight size={20} /> Deposit
               </Link>
-              <Link to="/wallet" className="px-8 py-4 rounded-2xl bg-white/10 text-white font-black border border-white/20 hover:bg-white/20 transition-all active:scale-95 flex items-center gap-2">
+              <Link to="/wallet" className="px-5 sm:px-8 py-3 sm:py-4 rounded-2xl bg-white/10 text-white font-black border border-white/20 hover:bg-white/20 transition-all active:scale-95 flex items-center gap-2 text-sm">
                 <ArrowDownRight size={20} /> Withdraw
               </Link>
-              <Link to="/wallet" className="px-8 py-4 rounded-2xl bg-white/10 text-white font-black border border-white/20 hover:bg-white/20 transition-all active:scale-95 flex items-center gap-2">
+              <Link to="/wallet" className="px-5 sm:px-8 py-3 sm:py-4 rounded-2xl bg-white/10 text-white font-black border border-white/20 hover:bg-white/20 transition-all active:scale-95 flex items-center gap-2 text-sm">
                 <RefreshCcw size={20} /> Transfer
               </Link>
             </div>
@@ -145,7 +145,7 @@ const Dashboard = () => {
            <Link to="/financing" className="w-full py-4 rounded-2xl bg-forest/5 text-forest font-bold text-sm hover:bg-forest/10 transition-all text-center">Manage All Financing</Link>
         </motion.div>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-8">
         <motion.div variants={fadeUp} className="lg:col-span-2 glass-card">
           <div className="flex justify-between items-center mb-8">
             <div>
@@ -201,7 +201,7 @@ const Dashboard = () => {
         </motion.div>
       </div>
       <motion.div variants={fadeUp} className="glass-card">
-         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             <div className="md:col-span-2">
                <h3 className="text-2xl font-black text-forest-dark mb-2">Financial Health</h3>
                <p className="text-forest/60 mb-6">Based on your spending and budget adherence this month.</p>
